@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Home from './Home/Home';
 import About from './About/About';
 import { Route, Link } from 'react-router-dom';
-
+import FAQ from './About/FAQ/FAQ';
+import Company from './About/Company/Company';
 
 class App extends Component {
 
@@ -10,16 +11,21 @@ class App extends Component {
     return (
       <div>
         This is App.js
-        {/* This allows you to immit switch and utilize the function to only use one page at once*/}
         <nav>
-          <Link to = '/'> Home</Link>
-          <Link to = '/about'> About</Link>
+          <Link to='/'> Home</Link>
+          <Link to='/about'> About</Link>
 
         </nav>
 
         <main>
-          <Route exact path="/" Component= {Home} />
-          <Route path="/about" Component= {About} />
+        <Route exact path="/" component={Home} />
+          <Route path="/about" render={() => <About>
+
+            <Route path="/about/faq" Component={FAQ}> </Route>
+
+            <Route path="/about/company" component={Company}></Route>
+            
+          </About>} />
         </main>
   
       </div>
